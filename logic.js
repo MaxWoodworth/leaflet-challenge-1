@@ -16,3 +16,18 @@ var myMap = L.map("map", {
 
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
+d3.json(url, function(response) {
+
+    console.log(response);
+  
+    for (var i = 0; i < response.length; i++) {
+      var location = response[i].location;
+    //   var depth = response[i]
+      if (location) {
+        L.marker([location.coordinates[1], location.coordinates[0]]).addTo(myMap);
+      }
+    }
+  
+  });
+  
+  
