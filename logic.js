@@ -22,23 +22,54 @@ function markerSize(magnitude) {
 function quakeColor(depth) {
     return depth;
 }
+// Our style object
+var mapStyle = {
+  color: "white",
+  fillColor: "pink",
+  fillOpacity: 0.5,
+  weight: 1.5
+};
 
 d3.json(url, function (response) {
 
-    var latitude = [];
-    var longitude = [];
-    var depth = [];
-    var magnitude = [];
+   // Grabbing our GeoJSON data..
+    // d3.json(link, function (data) {
+        // Creating a geoJSON layer with the retrieved data
+        L.geoJson(response, {
+            // Passing in our style object
+            style: mapStyle
+        }).addTo(myMap);
+    });
 
-    console.log(response);
+    // var latitude = [];
+    // var longitude = [];
+    // var depth = [];
+    // var magnitude = [];
 
-    for (var i = 0; i < response.length; i++) {
-        var location = response[i].geometry;
-        //   var depth = response[i]
-        if (location) {
-            L.marker([location.coordinates[1], location.coordinates[0]]).addTo(myMap);
-        }
-    }
+    // console.log(response);
 
-});
+    // for (var i = 0; i < response.length; i++) {
+
+    //     latitude.push[i];
+
+    //     L.circle(response[i].location, {
+    //       fillOpacity: 0.75,
+    //       color: quakeColor(cities[i].population),
+    //       fillColor: "purple",
+    //       // Setting our circle's radius equal to the output of our markerSize function
+    //       // This will make our marker's size proportionate to its population
+    //       radius: markerSize(cities[i].population)
+    //     }).bindPopup("<h1>" + cities[i].name + "</h1> <hr> <h3>Population: " + cities[i].population + "</h3>").addTo(myMap);
+    //   }
+
+//     for (var i = 0; i < response.length; i++) {
+//         var location = response[i].features[i];
+//         console.log(location);
+//         //         //   var depth = response[i]
+//         if (location) {
+//             L.marker([location.coordinates[1], location.coordinates[0]]).addTo(myMap);
+//         }
+//     }
+
+// });
 
