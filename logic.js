@@ -14,3 +14,5 @@ var myMap = L.map("map", {
   accessToken: API_KEY
 }).addTo(myMap);
 
+var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+
