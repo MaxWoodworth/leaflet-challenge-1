@@ -14,7 +14,52 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
-var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
+// var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson";
+
+
+
+d3.json(url, function (response) {
+    console.log(response);
+
+    // var coordinates = response.features[0].geometry.coordinates;
+    // L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
+
+    // var coordinates = response.features[1].geometry.coordinates;
+    // L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
+
+    // var coordinates = response.features[2].geometry.coordinates;
+    // L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
+
+    // var coordinates = response.features[2].geometry.coordinates;
+    // L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
+
+    // L.circle([coordinates[1], coordinates[0]], {
+    //                 color: "green",
+    //                 fillColor: "green",
+    //                 fillOpacity: 1,
+    //                 radius: 100000
+    //             }).addTo(myMap);
+
+    for (var index = 0; index < response.features.length; index++) {
+
+        var coordinates = response.features[index].geometry.coordinates;
+
+        // Source: Activity 2-2
+
+        // Checks for coordinates property
+        if (coordinates) {
+
+            L.circle([coordinates[1], coordinates[0]], {
+                color: "green",
+                fillColor: "green",
+                fillOpacity: 1,
+                radius: 10000
+            }).addTo(myMap);
+
+        }
+    }
+});
 
 // function markerSize(magnitude) {
 //     return magnitude;
@@ -50,29 +95,32 @@ var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.ge
 //         }).addTo(myMap);
 //     });
 // response = d3.json(url, function (response))
-d3.json(url, function (response) {
+// d3.json(url, function (response) {
 
-    console.log(response);
-    console.log(response.features[1].geometry.coordinates[1]);
-    console.log(response.features[1].geometry.coordinates[0]);
-    console.log(response.features[1].geometry.coordinates[2]);
+    // console.log(response);
+    // console.log(response.features[1].geometry.coordinates[1]);
+    // console.log(response.features[1].geometry.coordinates[0]);
+    // console.log(response.features[1].geometry.coordinates[2]);
+    // console.log(response.features[1].geometry.coordinates);
 
-    var latitude = response.features[0].geometry.coordinates[1];
-    var longitude = response.features[0].geometry.coordinates[0];
-    var depth = response.features[0].geometry.coordinates[2];
 
-    var latitude1 = response.features[1].geometry.coordinates[1];
-    var longitude1 = response.features[1].geometry.coordinates[0];
-    var depth = response.features[1].geometry.coordinates[2]
+    // var latitude = response.features[0].geometry.coordinates[1];
+    // var longitude = response.features[0].geometry.coordinates[0];
+    // var depth = response.features[0].geometry.coordinates[2];
 
-    L.marker([latitude, longitude]).addTo(myMap);
-    L.marker([latitude1, longitude1]).addTo(myMap);
-     L.circle([latitude, longitude], {
-                    color: "green",
-                    fillColor: "green",
-                    fillOpacity: 1,
-                    radius: 100000
-                }).addTo(myMap);
+    // var latitude1 = response.features[1].geometry.coordinates[1];
+    // var longitude1 = response.features[1].geometry.coordinates[0];
+    // var depth = response.features[1].geometry.coordinates[2]
+    // var coordinates = response.features[0].geometry.coordinates;
+
+    // L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
+    // L.marker([latitude1, longitude1]).addTo(myMap);
+    //  L.circle([latitude, longitude], {
+    //                 color: "green",
+    //                 fillColor: "green",
+    //                 fillOpacity: 1,
+    //                 radius: 100000
+    //             }).addTo(myMap);
 
     //     color: "green",
     //     fillColor: "green",
@@ -83,56 +131,61 @@ d3.json(url, function (response) {
     // console.log(longitude);
     // console.log(depth);
 
-    for (var i = 0; i < response.length; i++) {
+    // for (var i = 0; i < response.length; i++) {
         // console.log(response);
         // var locationArray = [];
         // var lat = latitude[i];
         // var long = longitude[i];
         // var dpth = depth[i];
         // var depthArray = [];
-        var latitude = response.features[i].geometry.coordinates[1];
-        var longitude = response.features[i].geometry.coordinates[0];
-        var depth = response.features[i].geometry.coordinates[2];
+        // var coordinates = response.features[i].geometry.coordinates;
+        // var latitude = response.features[i].geometry.coordinates[1];
+        // var longitude = response.features[i].geometry.coordinates[0];
+        // var depth = response.features[i].geometry.coordinates[2];
+
         // console.log(response);
         // var location = "[" + (response.features[i].geometry.coordinates[i + 1]) + "," + (response.features[i].geometry.coordinates[i]) + "]";
         // var depth = response.features[i].geometry.coordinates[i + 2];
+
+        //Source: Activity 2-2
         // if (latitude & location) {
-      
-        L.marker([latitude, longitude]).addTo(myMap);
-        // L.circle([latitude, longitude], {
-        //     color: "green",
-        //     fillColor: "green",
-        //     fillOpacity: 0.75,
-        //     radius: 500
-        // }).addTo(myMap);
+        //Checks for coordinates property
+//         if (coordinates) {
+//             L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
+//         }
+//     }
+// });
+//         L.circle([latitude, longitude], {
+//             color: "green",
+//             fillColor: "green",
+//             fillOpacity: 0.75,
+//             radius: 500
+//         }).addTo(myMap);
 
 
+//         locationArray.push(location);
+//         console.log(locationArray);
+
+//         L.marker(locationArray)
+//             .bindPopup("<h1>" + response.features[i].geometry.coordinates[i + 2])
+//             .addTo(myMap);
 
 
+//         console.log(depth);
 
-        // locationArray.push(location);
-        // console.log(locationArray);
+//         var circMarker = L.circle([location,{
+//             radius: 20,
+//             blur: 35
+//         }]).addTo(myMap);
+//         console.log([i]);
 
-        // L.marker(locationArray)
-        //     .bindPopup("<h1>" + response.features[i].geometry.coordinates[i + 2])
-        //     .addTo(myMap);
 
+//       if (location) {
+//         // locationArray.push([location.coordinates[1], location.coordinates[0]]);
+//         locationArray.push([features.geometry.coordinates[1], features.geometry.coordinates[0]]);
+//         depthArray.push([features.geometry.coordinates[2]]);
+//       }
 
-        // console.log(depth);
-
-        // var circMarker = L.circle([location,{
-        //     radius: 20,
-        //     blur: 35
-        // }]).addTo(myMap);
-        // console.log([i]);
-    }
-
-    //   if (location) {
-    //     // locationArray.push([location.coordinates[1], location.coordinates[0]]);
-    //     locationArray.push([features.geometry.coordinates[1], features.geometry.coordinates[0]]);
-    //     depthArray.push([features.geometry.coordinates[2]]);
-    //   }
-})
 
 //     var circMarker = L.circle(locationArray, {
 //       radius: 20,
@@ -141,25 +194,25 @@ d3.json(url, function (response) {
 
 //   });
 //     // var latitude = [];
-    // var longitude = [];
-    // var depth = [];
-    // var magnitude = [];
+//     var longitude = [];
+//     var depth = [];
+//     var magnitude = [];
 
 
 
-    // for (var i = 0; i < response.length; i++) {
+//     for (var i = 0; i < response.length; i++) {
 
-    //     latitude.push[i];
+//         latitude.push[i];
 
-    //     L.circle(response[i].location, {
-    //       fillOpacity: 0.75,
-    //       color: quakeColor(cities[i].population),
-    //       fillColor: "purple",
-    //       // Setting our circle's radius equal to the output of our markerSize function
-    //       // This will make our marker's size proportionate to its population
-    //       radius: markerSize(cities[i].population)
-    //     }).bindPopup("<h1>" + cities[i].name + "</h1> <hr> <h3>Population: " + cities[i].population + "</h3>").addTo(myMap);
-    //   }
+//         L.circle(response[i].location, {
+//           fillOpacity: 0.75,
+//           color: quakeColor(cities[i].population),
+//           fillColor: "purple",
+//           // Setting our circle's radius equal to the output of our markerSize function
+//           // This will make our marker's size proportionate to its population
+//           radius: markerSize(cities[i].population)
+//         }).bindPopup("<h1>" + cities[i].name + "</h1> <hr> <h3>Population: " + cities[i].population + "</h3>").addTo(myMap);
+//       }
 
 //     for (var i = 0; i < response.length; i++) {
 //         var location = response[i].features[i];
