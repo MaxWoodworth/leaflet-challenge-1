@@ -16,12 +16,12 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
 
-function markerSize(magnitude) {
-    return magnitude;
-}
-function quakeColor(depth) {
-    return depth;
-}
+// function markerSize(magnitude) {
+//     return magnitude;
+// }
+// function quakeColor(depth) {
+//     return depth;
+// }
 // Our style object
 // var mapStyle = {
 //   color: "white",
@@ -49,21 +49,81 @@ function quakeColor(depth) {
 //               }
 //         }).addTo(myMap);
 //     });
+// response = d3.json(url, function (response))
 d3.json(url, function (response) {
 
     console.log(response);
-    console.log(response.features[0].geometry.coordinates[1]);
-    console.log(response.features[0].geometry.coordinates[0]);
-    console.log(response.features[0].geometry.coordinates[2]);
+    console.log(response.features[1].geometry.coordinates[1]);
+    console.log(response.features[1].geometry.coordinates[0]);
+    console.log(response.features[1].geometry.coordinates[2]);
 
+    var latitude = response.features[0].geometry.coordinates[1];
+    var longitude = response.features[0].geometry.coordinates[0];
+    var depth = response.features[0].geometry.coordinates[2];
 
-    var locationArray = [];
-    var depthArray = [];
+    var latitude1 = response.features[1].geometry.coordinates[1];
+    var longitude1 = response.features[1].geometry.coordinates[0];
+    var depth = response.features[1].geometry.coordinates[2]
+
+    L.marker([latitude, longitude]).addTo(myMap);
+    L.marker([latitude1, longitude1]).addTo(myMap);
+     L.circle([latitude, longitude], {
+                    color: "green",
+                    fillColor: "green",
+                    fillOpacity: 1,
+                    radius: 100000
+                }).addTo(myMap);
+
+    //     color: "green",
+    //     fillColor: "green",
+    //     fillOpacity: 0.75,
+    //     radius: 500
+    // }).addTo(myMap);
+    // console.log(latitude);
+    // console.log(longitude);
+    // console.log(depth);
 
     for (var i = 0; i < response.length; i++) {
-        
-        var location = (response.features[i].geometry.coordinates[i+1])+","+(response.features[i].geometry.coordinates[i]);
-        var depth = response.features[i].geometry.coordinates[i+2];
+        // console.log(response);
+        // var locationArray = [];
+        // var lat = latitude[i];
+        // var long = longitude[i];
+        // var dpth = depth[i];
+        // var depthArray = [];
+        var latitude = response.features[i].geometry.coordinates[1];
+        var longitude = response.features[i].geometry.coordinates[0];
+        var depth = response.features[i].geometry.coordinates[2];
+        // console.log(response);
+        // var location = "[" + (response.features[i].geometry.coordinates[i + 1]) + "," + (response.features[i].geometry.coordinates[i]) + "]";
+        // var depth = response.features[i].geometry.coordinates[i + 2];
+        // if (latitude & location) {
+      
+        L.marker([latitude, longitude]).addTo(myMap);
+        // L.circle([latitude, longitude], {
+        //     color: "green",
+        //     fillColor: "green",
+        //     fillOpacity: 0.75,
+        //     radius: 500
+        // }).addTo(myMap);
+
+
+
+
+
+        // locationArray.push(location);
+        // console.log(locationArray);
+
+        // L.marker(locationArray)
+        //     .bindPopup("<h1>" + response.features[i].geometry.coordinates[i + 2])
+        //     .addTo(myMap);
+
+
+        // console.log(depth);
+
+        // var circMarker = L.circle([location,{
+        //     radius: 20,
+        //     blur: 35
+        // }]).addTo(myMap);
         // console.log([i]);
     }
 
