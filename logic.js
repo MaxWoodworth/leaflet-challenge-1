@@ -23,30 +23,65 @@ function quakeColor(depth) {
     return depth;
 }
 // Our style object
-var mapStyle = {
-  color: "white",
-  fillColor: "pink",
-  fillOpacity: 0.5,
-  weight: 1.5
-};
+// var mapStyle = {
+//   color: "white",
+//   fillColor: "pink",
+//   fillOpacity: 0.5,
+//   weight: 1.5
+// };
 
+// d3.json(url, function (response) {
+
+//    // Grabbing our GeoJSON data..
+//     // d3.json(link, function (data) {
+//         // Creating a geoJSON layer with the retrieved data
+//         L.geoJson(response, {
+
+//             // Passing in our style object
+//             // style: mapStyle
+//             style: function(feature) {
+//                 return {
+//                   color: "white",
+//                   fillColor: chooseColor(features.geometry.coordinates),
+//                   fillOpacity: 0.5,
+//                   weight: 1.5
+//                 };
+//               }
+//         }).addTo(myMap);
+//     });
 d3.json(url, function (response) {
 
-   // Grabbing our GeoJSON data..
-    // d3.json(link, function (data) {
-        // Creating a geoJSON layer with the retrieved data
-        L.geoJson(response, {
-            // Passing in our style object
-            style: mapStyle
-        }).addTo(myMap);
-    });
+    console.log(response);
+    console.log(response.features[0].geometry.coordinates[1]);
 
-    // var latitude = [];
+    var locationArray = [];
+    var depthArray = [];
+
+    for (var i = 0; i < response.length; i++) {
+        // var location = response.features.geometry;
+        var location = response.type.features[i].geometry.coordinates[i];
+        // console.log([i]);
+    }
+
+    //   if (location) {
+    //     // locationArray.push([location.coordinates[1], location.coordinates[0]]);
+    //     locationArray.push([features.geometry.coordinates[1], features.geometry.coordinates[0]]);
+    //     depthArray.push([features.geometry.coordinates[2]]);
+    //   }
+})
+
+//     var circMarker = L.circle(locationArray, {
+//       radius: 20,
+//       blur: 35
+//     }).addTo(myMap);
+
+//   });
+//     // var latitude = [];
     // var longitude = [];
     // var depth = [];
     // var magnitude = [];
 
-    // console.log(response);
+
 
     // for (var i = 0; i < response.length; i++) {
 
@@ -72,4 +107,3 @@ d3.json(url, function (response) {
 //     }
 
 // });
-
