@@ -53,13 +53,17 @@ d3.json(url, function (response) {
 
     console.log(response);
     console.log(response.features[0].geometry.coordinates[1]);
+    console.log(response.features[0].geometry.coordinates[0]);
+    console.log(response.features[0].geometry.coordinates[2]);
+
 
     var locationArray = [];
     var depthArray = [];
 
     for (var i = 0; i < response.length; i++) {
-        // var location = response.features.geometry;
-        var location = response.type.features[i].geometry.coordinates[i];
+        
+        var location = (response.features[i].geometry.coordinates[i+1])+","+(response.features[i].geometry.coordinates[i]);
+        var depth = response.features[i].geometry.coordinates[i+2];
         // console.log([i]);
     }
 
