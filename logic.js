@@ -32,28 +32,28 @@ d3.json(url, function (response) {
         // console.log(magnitude);
 
         // Color to be based on value of depth
-
+        // Source: Activity 1-7 - Stu_Country_World_Cup
         var color = "";
         if (depth > 90) {
-          color = "red";
+            color = "black";
         }
         else if (depth > 70) {
-          color = "orange";
+            color = "blue";
         }
         else if (depth > 50) {
-          color = "pink";
+            color = "purple";
         }
         else if (depth > 30) {
-            color = "yellow";
-          }
-          else if (depth > 10) {
-            color = "blue";
-          }
+            color = "green";
+        }
+        else if (depth > 10) {
+            color = "orange";
+        }
         else {
-          color = "green";
+            color = "yellow";
         }
 
-        // Source: Activity 2-2
+        // Source: Activity 2-2 Ins_Markers
 
         // Checks for coordinates property
         if (coordinates) {
@@ -62,7 +62,7 @@ d3.json(url, function (response) {
                 color: "white",
                 fillColor: color,
                 fillOpacity: 1,
-                radius: 50000
+                radius: magnitude*30000
             }).addTo(myMap);
 
         }
@@ -88,7 +88,7 @@ d3.json(url, function (response) {
     //                 radius: 100000
     //             }).addTo(myMap);
 
-   
+
 //Use exercise 7 from Day 1 for size and color of things based on a value
 
 // function markerSize(magnitude) {
