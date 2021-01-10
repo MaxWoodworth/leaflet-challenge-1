@@ -31,8 +31,9 @@ d3.json(url, function (response) {
         var magnitude = response.features[index].properties.mag;
         // console.log(magnitude);
 
-        var place = response.features[index].properties.place;
+        var approxPlace = response.features[index].properties.place;
         console.log(place);
+        var approxTime = response.features[index].properties.time;
 
         // Color to be based on value of depth
         // Source: Activity 1-7 - Stu_Country_World_Cup
