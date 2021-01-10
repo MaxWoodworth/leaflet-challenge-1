@@ -35,8 +35,9 @@ d3.json(url, function (response) {
         // console.log(place);
 
         // Source: Epoch Date Converter https://www.epochconverter.com/programming/
+        // Source: Epoch Year Correction https://stackoverflow.com/questions/4631928/convert-utc-epoch-to-local-date
         var approxTime = new Date(response.features[index].properties.time);
-        console.log(approxTime);
+        // console.log(approxTime);
 
         // Color to be based on value of depth
         // Source: Activity 1-7 - Stu_Country_World_Cup
@@ -70,7 +71,7 @@ d3.json(url, function (response) {
                 fillColor: color,
                 fillOpacity: 1,
                 radius: magnitude*19000
-            }).bindPopup(`<h3>${approxPlace}` + `<h3>${approxTime}`+ `<h3>Magnitude: ${magnitude}`).addTo(myMap);
+            }).bindPopup(`<h3>${approxPlace}` + `<h3>${approxTime}`+ `<h3>Magnitude: ${magnitude}`+`<h3>Depth: ${depth}` ).addTo(myMap);
         // }).bindPopUp("<h1>Where: " + approxPlace + "</h1> <hr> <h1>When: "+ approxTime + "</h1>Magnitude: "+ magnitude).addTo(myMap);
         }
     }
