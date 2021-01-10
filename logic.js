@@ -31,6 +31,9 @@ d3.json(url, function (response) {
         var magnitude = response.features[index].properties.mag;
         // console.log(magnitude);
 
+        var place = response.features[index].properties.place;
+        console.log(place);
+
         // Color to be based on value of depth
         // Source: Activity 1-7 - Stu_Country_World_Cup
         var color = "";
@@ -62,7 +65,7 @@ d3.json(url, function (response) {
                 color: "white",
                 fillColor: color,
                 fillOpacity: 1,
-                radius: magnitude*30000
+                radius: magnitude*19000
             }).addTo(myMap);
 
         }
