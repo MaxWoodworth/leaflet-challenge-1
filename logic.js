@@ -17,10 +17,51 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 // var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_week.geojson";
 
-
+// Read url response
 
 d3.json(url, function (response) {
     console.log(response);
+
+    // Loop through specific url response needed
+    for (var index = 0; index < response.features.length; index++) {
+
+        var coordinates = response.features[index].geometry.coordinates;
+        var depth = response.features[index].geometry.coordinates[2];
+        // console.log(depth);
+        var magnitude = response.features[index].properties.mag;
+        console.log(magnitude);
+
+        // Color to be based on value of depth
+
+        var color = "";
+        if (depth > 20) {
+          color = "red";
+        }
+        else if (depth > 15) {
+          color = "pink";
+        }
+        else if (depth > 5) {
+          color = "blue";
+        }
+        else {
+          color = "green";
+        }
+
+        // Source: Activity 2-2
+
+        // Checks for coordinates property
+        if (coordinates) {
+
+            L.circle([coordinates[1], coordinates[0]], {
+                color: "white",
+                fillColor: color,
+                fillOpacity: 1,
+                radius: 50000
+            }).addTo(myMap);
+
+        }
+    }
+});
 
     // var coordinates = response.features[0].geometry.coordinates;
     // L.marker([coordinates[1], coordinates[0]]).addTo(myMap);
@@ -41,25 +82,8 @@ d3.json(url, function (response) {
     //                 radius: 100000
     //             }).addTo(myMap);
 
-    for (var index = 0; index < response.features.length; index++) {
-
-        var coordinates = response.features[index].geometry.coordinates;
-
-        // Source: Activity 2-2
-
-        // Checks for coordinates property
-        if (coordinates) {
-
-            L.circle([coordinates[1], coordinates[0]], {
-                color: "green",
-                fillColor: "green",
-                fillOpacity: 1,
-                radius: 10000
-            }).addTo(myMap);
-
-        }
-    }
-});
+   
+//Use exercise 7 from Day 1 for size and color of things based on a value
 
 // function markerSize(magnitude) {
 //     return magnitude;
