@@ -33,7 +33,9 @@ d3.json(url, function (response) {
 
         var approxPlace = response.features[index].properties.place;
         // console.log(place);
-        var approxTime = new Date(response.features[index].properties.time * 1000);
+
+        // Source: Epoch Date Converter https://www.epochconverter.com/programming/
+        var approxTime = new Date(response.features[index].properties.time);
         console.log(approxTime);
 
         // Color to be based on value of depth
@@ -68,8 +70,8 @@ d3.json(url, function (response) {
                 fillColor: color,
                 fillOpacity: 1,
                 radius: magnitude*19000
-            }).addTo(myMap);
-
+            }).bindPopup(`<h3>${approxPlace}` + `<h3>${approxTime}`+ `<h3>Magnitude: ${magnitude}`).addTo(myMap);
+        // }).bindPopUp("<h1>Where: " + approxPlace + "</h1> <hr> <h1>When: "+ approxTime + "</h1>Magnitude: "+ magnitude).addTo(myMap);
         }
     }
 });
