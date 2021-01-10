@@ -2,7 +2,7 @@
 // Set the longitude, latitude, and the starting zoom level
 var myMap = L.map("map", {
     center: [37.0902, -95.7129],
-    zoom: 5.4
+    zoom: 4
 });
 
 L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
@@ -29,20 +29,26 @@ d3.json(url, function (response) {
         var depth = response.features[index].geometry.coordinates[2];
         // console.log(depth);
         var magnitude = response.features[index].properties.mag;
-        console.log(magnitude);
+        // console.log(magnitude);
 
         // Color to be based on value of depth
 
         var color = "";
-        if (depth > 20) {
+        if (depth > 90) {
           color = "red";
         }
-        else if (depth > 15) {
+        else if (depth > 70) {
+          color = "orange";
+        }
+        else if (depth > 50) {
           color = "pink";
         }
-        else if (depth > 5) {
-          color = "blue";
-        }
+        else if (depth > 30) {
+            color = "yellow";
+          }
+          else if (depth > 10) {
+            color = "blue";
+          }
         else {
           color = "green";
         }
