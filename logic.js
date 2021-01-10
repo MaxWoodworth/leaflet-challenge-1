@@ -32,8 +32,9 @@ d3.json(url, function (response) {
         // console.log(magnitude);
 
         var approxPlace = response.features[index].properties.place;
-        console.log(place);
-        var approxTime = response.features[index].properties.time;
+        // console.log(place);
+        var approxTime = new Date(response.features[index].properties.time * 1000);
+        console.log(approxTime);
 
         // Color to be based on value of depth
         // Source: Activity 1-7 - Stu_Country_World_Cup
