@@ -14,8 +14,6 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: API_KEY
 }).addTo(myMap);
 
-// Working code////////////////////////////////////////////////////////////////////////////////////////////////////
-
 // Declare url variable
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson";
 
@@ -44,7 +42,7 @@ d3.json(url, function (response) {
 
         // Color to be based on value of depth
         // Source: Activity 1-7 - Stu_Country_World_Cup
-// function color(){
+
         var color = "";
         if (depth > 90) {
             color = "black";
@@ -64,7 +62,7 @@ d3.json(url, function (response) {
         else {
             color = "yellow";
         }
-    
+
         // Source: Activity 2-2 Ins_Markers
         // Checks for coordinates property
         if (coordinates) {
@@ -87,14 +85,13 @@ d3.json(url, function (response) {
         var div = L.DomUtil.create('div', 'info legend');
         var labels = ["Earthquake Depth"];
         var categories = ['< 10', '10 - 30', '30 - 50', '50 - 70', '70 - 90', '90+'];
-        var colors = ["yellow","orange","green","purple","blue","black"];
+        var colors = ["yellow", "orange", "green", "purple", "blue", "black"];
 
         for (var i = 0; i < categories.length; i++) {
 
             div.innerHTML =
                 labels.push(
-                    '<li style="background-color:' + colors[i] + '   "></li>   '+ categories[i]);
-                    // (categories[i] ? categories[i] : '+'));
+                    '<li style="background-color:' + colors[i] + '   "></li>   ' + categories[i]);
 
         }
         div.innerHTML = '<ul>' + labels.join('   ') + '</ul>'
@@ -102,7 +99,3 @@ d3.json(url, function (response) {
     };
     legend.addTo(myMap);
 })
-
-// });
-
-// Working code///////////////////////////////////////////////////////////
