@@ -83,7 +83,7 @@ d3.json(url, function (response) {
     legend.onAdd = function (map) {
 
         var div = L.DomUtil.create('div', 'info legend');
-        var labels = ["Earthquake Depth"];
+        var labels = ["Earthquake Depth (km)"];
         var categories = ['< 10', '10 - 30', '30 - 50', '50 - 70', '70 - 90', '90+'];
         var colors = ["yellow", "orange", "green", "purple", "blue", "black"];
 
